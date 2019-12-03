@@ -1,0 +1,23 @@
+import re
+import os
+numbr=[]
+eml=[]
+url_sc=[]
+def fileReadWr(file):
+    print("*"*40)
+    f= open("oyt.txt", "r")
+    if f.mode == "r":
+        contents = f.read()
+
+        eml =re.findall(r'\w+@\w+\.{1}\w+', contents)
+        numbr =re.findall(r'\+?\d[\d -]{8,12}\d',contents)
+        url_sc = re.findall(r'(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})',contents)                          #r'^\w+.M',contents)
+    file_append=open("out.txt", "a")
+    if file_append.mode == "a":
+       file_append.write(str(eml))
+       file_append.write(str(numbr))
+       file_append.write(str(url_sc))
+       print(eml,numbr,url_sc)
+if __name__ == "__main__":
+    file=''
+    fileReadWr(file)     
